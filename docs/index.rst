@@ -10,9 +10,28 @@ ccpbiosim-sphinx-theme
    :button: example | Example page
    :github: CCPBioSim/ccpbiosim-sphinx-theme
 
-The shared Sphinx theme for CCPBioSim projects, based on
+This is the Sphinx theme used across CCPBioSim projects. It is built on
 `pydata-sphinx-theme <https://pydata-sphinx-theme.readthedocs.io/>`_ and
-styled to match `ccpbiosim.org <https://www.ccpbiosim.org/>`_.
+uses the same colours and fonts as `ccpbiosim.org <https://www.ccpbiosim.org/>`_.
+
+.. grid:: 1 2 2 3
+   :gutter: 3
+
+   .. grid-item-card:: Example Page
+      :link: example
+      :link-type: doc
+
+      Code, tables, tabs and other content using the theme.
+
+   .. grid-item-card:: Source Code
+      :link: https://github.com/CCPBioSim/ccpbiosim-sphinx-theme
+
+      The theme repository on GitHub.
+
+   .. grid-item-card:: CCPBioSim
+      :link: https://www.ccpbiosim.org/
+
+      The main CCPBioSim website.
 
 Installation
 ------------

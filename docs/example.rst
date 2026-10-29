@@ -1,7 +1,7 @@
 Example Page
 ============
 
-This page shows how common content looks with the theme.
+Some example content using the theme.
 
 Code
 ----
