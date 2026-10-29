@@ -13,13 +13,13 @@ concurrency:
 jobs:
   unit:
     name: Unit
-    uses: CCPBioSim/.github/.github/workflows/ci-test-python.yaml@edc3732fa8d31a58312ca784e65cad9bdfba9347 # 0.13.0
+    uses: CCPBioSim/.github/.github/workflows/ci-test-python.yaml@f72e64d2dc791ad5ceda145777a3922895d92a5d # 0.17.0
     permissions:
       contents: read
       checks: write
       statuses: write
     with:
-      package: example_package
+      package: ccpbiosim_sphinx_theme
       lowest-dependencies-check: true
       test-path: tests/unit
       os: '["ubuntu-26.04", "macos-26", "windows-2025-vs2026"]'

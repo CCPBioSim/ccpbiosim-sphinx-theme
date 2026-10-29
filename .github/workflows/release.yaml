@@ -1,4 +1,4 @@
-name: Release example_package
+name: Release ccpbiosim-sphinx-theme
 
 on:
   workflow_dispatch:
@@ -27,7 +27,7 @@ jobs:
       dry-run: ${{ inputs.dry-run }}
       version-files: >-
         [
-          {"path": "example_package/__init__.py", "pattern": "^__version__ =.*", "replace": "__version__ = \"{version}\""},
+          {"path": "ccpbiosim_sphinx_theme/__init__.py", "pattern": "^__version__ =.*", "replace": "__version__ = \"{version}\""},
           {"path": "CITATION.cff", "pattern": "^version:.*", "replace": "version: {version}"},
           {"path": "CITATION.cff", "pattern": "^date-released:.*", "replace": "date-released: '{date}'"}
         ]
