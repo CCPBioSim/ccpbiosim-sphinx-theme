@@ -39,8 +39,6 @@ extensions = [
     "sphinx.ext.napoleon",
     "sphinx.ext.intersphinx",
     "sphinx.ext.extlinks",
-    "nbsphinx",
-    "sphinx_copybutton",
 ]
 
 # Autosummary (API stubs)
@@ -62,5 +60,11 @@ language = "en"
 exclude_patterns = ["_build", "Thumbs.db", ".DS_Store"]
 
 # -- Options for HTML output -------------------------------------------------
-html_theme = "furo"
+# The theme documents itself. It also turns on sphinx-design and
+# sphinx-copybutton, so they are not listed in `extensions`.
+html_theme = "ccpbiosim_sphinx_theme"
 html_static_path = ["_static"]
+html_context = {"github_repo": "ccpbiosim-sphinx-theme", "doc_path": "docs"}
+
+# No page has sub-pages, so the left sidebar would always be empty.
+html_sidebars = {"**": []}
