@@ -6,13 +6,16 @@ Enable it in ``conf.py`` with::
     html_theme = "ccpbiosim_sphinx_theme"
     html_context = {"github_repo": ""}
 
-The theme also turns on sphinx-design and sphinx-copybutton.
+The theme also turns on sphinx-design and sphinx-copybutton, and adds the
+``ccpbiosim-hero`` directive for home pages.
 """
 
 from pathlib import Path
 from typing import Any
 
 from sphinx.application import Sphinx
+
+from .hero import HeroDirective
 
 __version__ = "0.0.1"
 
@@ -96,6 +99,7 @@ def setup(app: Sphinx) -> dict[str, Any]:
     app.add_html_theme(THEME_NAME, str(THEME_PATH))
     app.setup_extension("sphinx_design")
     app.setup_extension("sphinx_copybutton")
+    app.add_directive("ccpbiosim-hero", HeroDirective)
     # Run before pydata-sphinx-theme reads the options at the default priority.
     app.connect("builder-inited", _set_defaults, priority=400)
 
