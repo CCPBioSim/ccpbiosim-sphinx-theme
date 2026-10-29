@@ -32,12 +32,21 @@ classifiers = [
 
 keywords = ["sphinx", "theme", "documentation", "ccpbiosim"]
 
-dependencies = []
+dependencies = [
+    "sphinx>=9.0,<10.0",
+    "pydata-sphinx-theme>=0.23,<0.24",
+    "sphinx-design>=0.7,<0.8",
+    "sphinx-copybutton>=0.5,<1.0",
+]
 
 [project.urls]
 Homepage = "https://github.com/CCPBioSim/ccpbiosim-sphinx-theme/"
 Repository = "https://github.com/CCPBioSim/ccpbiosim-sphinx-theme.git"
 Documentation = "https://ccpbiosim-sphinx-theme.readthedocs.io/"
+
+# Lets Sphinx find the theme from `html_theme = "ccpbiosim_sphinx_theme"`.
+[project.entry-points."sphinx.html_themes"]
+ccpbiosim_sphinx_theme = "ccpbiosim_sphinx_theme"
 
 #
 # Optional dependency groups
