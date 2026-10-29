@@ -66,13 +66,10 @@ pre-commit = [
     "rstcheck>=6.2,<7.0"
 ]
 
-docs = [
-    "sphinx>=9,<10",
-    "nbsphinx>=0.9,<1.0",
-    "sphinx_copybutton>=0.5,<1.0",
-    "furo>=2025.12.19,<2026.0",
-    "markupsafe>=3.0,<4.0"
-]
+# The docs are built with the theme itself, which already brings in Sphinx and
+# the extensions it uses. The group exists so `pip install ".[docs]"` works for
+# the shared docs workflow and Read the Docs.
+docs = []
 
 #
 # Ruff configuration inside pyproject (recommended)
