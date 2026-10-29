@@ -116,6 +116,77 @@ html[data-theme="dark"] {
   color: var(--pst-color-primary);
 }
 
+/* Home page hero, from the ccpbiosim-hero directive: a dark navy panel like
+ * the website's landing banner. */
+
+.ccp-hero {
+  color: #fff;
+  background: radial-gradient(
+      circle at 80% 20%,
+      rgba(140, 60, 200, 0.25),
+      transparent 45%
+    ),
+    linear-gradient(135deg, var(--ccp-navy) 0%, var(--ccp-navy-deep) 100%);
+  border-radius: 1rem;
+  padding: 2.5rem 2rem 2rem;
+  margin-bottom: 2rem;
+  text-align: center;
+}
+
+.ccp-hero img {
+  max-width: 300px;
+  width: 65%;
+  margin-bottom: 1.25rem;
+}
+
+.ccp-hero p {
+  color: #fff;
+}
+
+.ccp-hero .ccp-hero-tagline {
+  font-size: 1.6rem;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+}
+
+.ccp-hero .ccp-hero-summary {
+  font-size: 1.1rem;
+  opacity: 0.85;
+  max-width: 40rem;
+  margin: 0 auto 1.5rem;
+}
+
+.ccp-hero .ccp-hero-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1rem;
+}
+
+.ccp-hero .ccp-hero-buttons p {
+  margin: 0;
+}
+
+.ccp-hero .sd-btn {
+  font-size: 1.1rem;
+  padding: 0.5rem 1.1rem;
+}
+
+.ccp-hero .sd-btn-outline-light {
+  color: #fff !important;
+  border-color: #fff !important;
+}
+
+.ccp-hero .sd-btn-outline-light:hover {
+  color: var(--ccp-navy) !important;
+  background-color: #fff !important;
+}
+
+/* A page with a hero shows its title in the hero instead. */
+.bd-article section:has(> .ccp-hero) > h1 {
+  display: none;
+}
+
 /* Section cards */
 
 .sd-card {
