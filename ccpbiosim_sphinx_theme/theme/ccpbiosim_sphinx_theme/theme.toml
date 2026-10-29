@@ -1,0 +1,6 @@
+[theme]
+inherit = "pydata_sphinx_theme"
+stylesheets = ["styles/pydata-sphinx-theme.css", "ccpbiosim.css"]
+
+[options]
+ccpbiosim_hub_url = "https://ccpbiosim.readthedocs.io/"

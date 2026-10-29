@@ -1,0 +1,166 @@
+/* CCPBioSim theme for pydata-sphinx-theme.
+ */
+
+:root {
+  --ccp-teal: #1d7989;
+  --ccp-teal-dark: #0e3b43;
+  --ccp-sky: #27aadf;
+  --ccp-sky-dark: #1998c8;
+  --ccp-navy: #0f172a;
+  --ccp-navy-deep: #001b4c;
+
+  --pst-font-family-base: Optima, Candara, "Noto Sans", source-sans-pro,
+    sans-serif;
+  --pst-font-family-heading: var(--pst-font-family-base);
+  --pst-font-size-h1: 2.4rem;
+  --pst-font-size-h2: 1.7rem;
+  --pst-font-size-h3: 1.4rem;
+}
+
+html[data-theme="light"] {
+  --pst-color-primary: var(--ccp-teal);
+  --pst-color-secondary: var(--ccp-sky);
+  --pst-color-accent: var(--ccp-sky);
+  --pst-color-link: var(--ccp-teal);
+  --pst-color-link-hover: var(--ccp-teal-dark);
+  --pst-color-text-base: #171717;
+
+  --sd-color-primary: var(--ccp-sky);
+  --sd-color-primary-highlight: var(--ccp-sky-dark);
+  --sd-color-primary-text: #fff;
+}
+
+html[data-theme="dark"] {
+  --pst-color-primary: #4fb8ca;
+  --pst-color-secondary: var(--ccp-sky);
+  --pst-color-accent: var(--ccp-sky);
+  --pst-color-link: #4fb8ca;
+  --pst-color-link-hover: #8fd6e2;
+  --pst-color-background: var(--ccp-navy);
+  --pst-color-on-background: #16213a;
+  --pst-color-surface: #1c2843;
+
+  --sd-color-primary: var(--ccp-sky);
+  --sd-color-primary-highlight: var(--ccp-sky-dark);
+  --sd-color-primary-text: #fff;
+}
+
+/* Header bar: teal in both modes, like the website */
+
+.bd-header {
+  background-color: var(--ccp-teal) !important;
+  box-shadow: none;
+}
+
+.bd-header,
+.bd-header .navbar-nav .nav-link,
+.bd-header .pst-navbar-icon,
+.bd-header .navbar-brand p.title {
+  color: #fff !important;
+}
+
+.bd-header .navbar-nav .nav-link:hover,
+.bd-header .pst-navbar-icon:hover {
+  color: #fff !important;
+  text-decoration: underline;
+  text-decoration-thickness: 2px;
+  text-underline-offset: 0.4em;
+}
+
+.bd-header .navbar-nav li.current > .nav-link {
+  border-bottom-color: #fff;
+}
+
+.bd-header .search-button-field {
+  color: #fff;
+  background-color: rgba(255, 255, 255, 0.12);
+  border-color: rgba(255, 255, 255, 0.5);
+}
+
+.bd-header .search-button-field .kbd-shortcut__modifier,
+.bd-header .search-button-field kbd {
+  color: #fff;
+  background-color: transparent;
+  border-color: rgba(255, 255, 255, 0.5);
+}
+
+/* Navbar logo and project name */
+
+.navbar-brand img {
+  height: 2.6rem;
+}
+
+.navbar-brand p.title {
+  font-weight: 700;
+  padding-left: 0.75rem;
+  margin-left: 0.25rem;
+  border-left: 2px solid rgba(255, 255, 255, 0.5);
+}
+
+/* Headings */
+
+.bd-article h1 {
+  font-weight: 700;
+  color: var(--pst-color-primary);
+}
+
+.bd-article h2 {
+  font-weight: 700;
+  margin-top: 2.5rem;
+  padding-bottom: 0.3rem;
+  border-bottom: 2px solid var(--pst-color-border);
+}
+
+.bd-article h3 {
+  font-weight: 700;
+  color: var(--pst-color-primary);
+}
+
+/* Section cards */
+
+.sd-card {
+  border-radius: 0.75rem;
+  border: 1px solid var(--pst-color-border);
+  transition:
+    transform 0.25s ease,
+    box-shadow 0.25s ease,
+    border-color 0.25s ease;
+}
+
+.sd-card:hover {
+  transform: translateY(-6px);
+  border-color: var(--pst-color-primary);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+}
+
+.sd-card-title {
+  font-weight: 700;
+  color: var(--pst-color-primary);
+}
+
+/* Previous/next page buttons */
+
+.prev-next-area a {
+  border: 1px solid var(--pst-color-border);
+  border-radius: 0.75rem;
+  padding: 0.75rem 1rem;
+  transition: border-color 0.25s ease;
+}
+
+.prev-next-area a:hover {
+  border-color: var(--pst-color-primary);
+  text-decoration: none;
+}
+
+/* Footer: dark navy, like the website */
+
+.bd-footer {
+  color: #fff;
+  background-color: var(--ccp-navy);
+  border-top: none;
+}
+
+.bd-footer p,
+.bd-footer a {
+  color: #fff;
+}
