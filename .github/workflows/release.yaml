@@ -18,7 +18,7 @@ permissions:
 jobs:
   prepare:
     name: Prepare
-    uses: CCPBioSim/.github/.github/workflows/release-prepare.yaml@edc3732fa8d31a58312ca784e65cad9bdfba9347 # 0.13.0
+    uses: CCPBioSim/.github/.github/workflows/release-prepare.yaml@f72e64d2dc791ad5ceda145777a3922895d92a5d # 0.17.0
     permissions:
       contents: write
       pull-requests: write
@@ -37,23 +37,10 @@ jobs:
       ZULIP_BOT_API_KEY: ${{ secrets.ZULIP_BOT_API_KEY }}
       ZULIP_SITE: ${{ secrets.ZULIP_SITE }}
 
-  website:
-    name: Website
-    needs: prepare
-    uses: CCPBioSim/.github/.github/workflows/release-website.yaml@edc3732fa8d31a58312ca784e65cad9bdfba9347 # 0.13.0
-    permissions:
-      contents: read
-    with:
-      version: ${{ inputs.version }}
-      tag: ${{ needs.prepare.outputs.tag }}
-      dry-run: ${{ inputs.dry-run }}
-    secrets:
-      BUILD_TOKEN: ${{ secrets.BUILD_TOKEN }}
-
   pypi:
     name: PyPI
     needs: prepare
-    uses: CCPBioSim/.github/.github/workflows/release-pypi.yaml@edc3732fa8d31a58312ca784e65cad9bdfba9347 # 0.13.0
+    uses: CCPBioSim/.github/.github/workflows/release-pypi.yaml@f72e64d2dc791ad5ceda145777a3922895d92a5d # 0.17.0
     permissions:
       contents: read
     with:
