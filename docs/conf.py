@@ -14,7 +14,7 @@ REPO_ROOT = os.path.abspath(os.path.join(DOCS_DIR, ".."))
 sys.path.insert(0, REPO_ROOT)
 
 # -- Project information -----------------------------------------------------
-project = "CCPBioSim-Python-Template"
+project = "ccpbiosim-sphinx-theme"
 copyright_first_year = "2025"
 copyright_owners = "CCPBioSim"
 author = "CCPBioSim"
