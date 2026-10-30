@@ -114,6 +114,17 @@ def test_project_html_title_is_used_in_tab_titles(tmp_path: Path):
     assert "<title>Usage | My project docs</title>" in usage
 
 
+def test_only_the_home_page_drops_its_page_title(tmp_path: Path):
+    # A page titled the same as the project, such as an API reference named
+    # after the package, should still show its page title.
+    out = build(tmp_path, 'project = "Usage"\n')
+    index = (out / "index.html").read_text()
+    usage = (out / "usage.html").read_text()
+
+    assert "<title>Usage Documentation</title>" in index
+    assert "<title>Usage | Usage Documentation</title>" in usage
+
+
 def test_project_favicon_replaces_default(tmp_path: Path):
     (tmp_path / "src").mkdir()
     (tmp_path / "src" / "icon.png").write_bytes(b"")

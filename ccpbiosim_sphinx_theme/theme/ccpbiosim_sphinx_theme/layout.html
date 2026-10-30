@@ -7,7 +7,7 @@
   {%- set site_title = ccpbiosim_site_title|default(project)|e %}
   {%- if embedded or not site_title %}
   <title>{{ page_title }}</title>
-  {%- elif page_title == project|e %}
+  {%- elif pagename == root_doc %}
   <title>{{ site_title }}</title>
   {%- else %}
   <title>{{ page_title }} | {{ site_title }}</title>
