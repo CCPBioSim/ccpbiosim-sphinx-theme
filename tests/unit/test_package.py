@@ -17,6 +17,7 @@ def test_theme_files_are_bundled():
     for name in [
         "theme.toml",
         "layout.html",
+        "search.html",
         "ccpbiosim-footer.html",
         "static/ccpbiosim-favicon.svg",
         "static/ccpbiosim.css",

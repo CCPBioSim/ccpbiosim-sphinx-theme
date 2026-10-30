@@ -98,11 +98,20 @@ def test_tab_title_and_icon(tmp_path: Path):
     out = build(tmp_path)
     index = (out / "index.html").read_text()
     usage = (out / "usage.html").read_text()
+    search = (out / "search.html").read_text()
 
-    assert "<title>My project</title>" in index
-    assert "<title>Usage | My project</title>" in usage
+    assert "<title>My project Documentation</title>" in index
+    assert "<title>Usage | My project Documentation</title>" in usage
+    assert "<title>Search | My project Documentation</title>" in search
     assert 'href="_static/ccpbiosim-favicon.svg"' in usage
     assert (out / "_static" / "ccpbiosim-favicon.svg").is_file()
+
+
+def test_project_html_title_is_used_in_tab_titles(tmp_path: Path):
+    out = build(tmp_path, 'html_title = "My project docs"\n')
+    usage = (out / "usage.html").read_text()
+
+    assert "<title>Usage | My project docs</title>" in usage
 
 
 def test_project_favicon_replaces_default(tmp_path: Path):

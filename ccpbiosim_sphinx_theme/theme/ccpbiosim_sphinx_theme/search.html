@@ -1,0 +1,6 @@
+{%- extends "pydata_sphinx_theme/search.html" %}
+
+{# Match the "Page | Project Documentation" tab titles in layout.html. #}
+{%- block htmltitle %}
+  <title>{{ _("Search") }} | {{ ccpbiosim_site_title|default(project)|e }}</title>
+{%- endblock %}

@@ -1,12 +1,16 @@
 {%- extends "pydata_sphinx_theme/layout.html" %}
 
-{# Browser tab title as "Page | Project". #}
+{# Browser tab title as "Page | Project Documentation", or just
+   "Project Documentation" on the home page. #}
 {%- block htmltitle %}
   {%- set page_title = title|striptags|e %}
-  {%- if embedded or not project or page_title == project|e %}
+  {%- set site_title = ccpbiosim_site_title|default(project)|e %}
+  {%- if embedded or not site_title %}
   <title>{{ page_title }}</title>
+  {%- elif page_title == project|e %}
+  <title>{{ site_title }}</title>
   {%- else %}
-  <title>{{ page_title }} | {{ project|e }}</title>
+  <title>{{ page_title }} | {{ site_title }}</title>
   {%- endif %}
 {%- endblock %}
 

@@ -14,6 +14,7 @@ from pathlib import Path
 from typing import Any
 
 from sphinx.application import Sphinx
+from sphinx.locale import _
 from sphinx_copybutton import add_to_context as add_copybutton_settings
 
 from .hero import HeroDirective
@@ -52,6 +53,13 @@ def _set_defaults(app: Sphinx) -> None:
     context.setdefault("github_version", "main")
     context.setdefault("doc_path", "docs/source")
     repo = context.get("github_repo")
+
+    # Tab titles use "Project Documentation" unless the project sets html_title.
+    config = app.config
+    site_title = config.html_title
+    if site_title == _("%s %s documentation") % (config.project, config.release):
+        site_title = f"{config.project} Documentation"
+    context.setdefault("ccpbiosim_site_title", site_title)
 
     options = _theme_options(app)
     hub_url = options.get("ccpbiosim_hub_url", HUB_URL)
