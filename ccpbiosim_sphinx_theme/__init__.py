@@ -14,6 +14,7 @@ from pathlib import Path
 from typing import Any
 
 from sphinx.application import Sphinx
+from sphinx_copybutton import add_to_context as add_copybutton_settings
 
 from .hero import HeroDirective
 
@@ -99,6 +100,7 @@ def setup(app: Sphinx) -> dict[str, Any]:
     app.add_html_theme(THEME_NAME, str(THEME_PATH))
     app.setup_extension("sphinx_design")
     app.setup_extension("sphinx_copybutton")
+    add_copybutton_settings(app, app.config)
     app.add_directive("ccpbiosim-hero", HeroDirective)
     # Run before pydata-sphinx-theme reads the options at the default priority.
     app.connect("builder-inited", _set_defaults, priority=400)
