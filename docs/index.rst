@@ -17,18 +17,18 @@ uses the same colours and fonts as `ccpbiosim.org <https://www.ccpbiosim.org/>`_
 .. grid:: 1 2 2 3
    :gutter: 3
 
-   .. grid-item-card:: Example Page
+   .. grid-item-card:: 📄 Example Page
       :link: example
       :link-type: doc
 
       Code, tables, tabs and other content using the theme.
 
-   .. grid-item-card:: Source Code
+   .. grid-item-card:: 💻 Source Code
       :link: https://github.com/CCPBioSim/ccpbiosim-sphinx-theme
 
       The theme repository on GitHub.
 
-   .. grid-item-card:: CCPBioSim
+   .. grid-item-card:: 🌐 CCPBioSim
       :link: https://www.ccpbiosim.org/
 
       The main CCPBioSim website.
