@@ -66,9 +66,7 @@ pre-commit = [
     "rstcheck>=6.2,<7.0"
 ]
 
-# The docs are built with the theme itself, which already brings in Sphinx and
-# the extensions it uses. The group exists so `pip install ".[docs]"` works for
-# the shared docs workflow and Read the Docs.
+# Empty as the theme's own dependencies are enough to build the docs.
 docs = []
 
 #

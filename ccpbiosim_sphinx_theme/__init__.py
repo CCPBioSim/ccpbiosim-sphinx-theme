@@ -4,7 +4,7 @@ A child theme of pydata-sphinx-theme that matches https://www.ccpbiosim.org/.
 Enable it in ``conf.py`` with::
 
     html_theme = "ccpbiosim_sphinx_theme"
-    html_context = {"github_repo": ""}
+    html_context = {"github_repo": "my-project"}
 
 The theme also turns on sphinx-design and sphinx-copybutton, and adds the
 ``ccpbiosim-hero`` directive for home pages.
