@@ -16,7 +16,9 @@ def test_theme_files_are_bundled():
     theme = ccpbiosim_sphinx_theme.THEME_PATH
     for name in [
         "theme.toml",
+        "layout.html",
         "ccpbiosim-footer.html",
+        "static/ccpbiosim-favicon.svg",
         "static/ccpbiosim.css",
         f"static/{ccpbiosim_sphinx_theme.LOGO}",
     ]:

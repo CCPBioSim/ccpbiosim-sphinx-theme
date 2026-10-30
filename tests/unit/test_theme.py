@@ -33,7 +33,7 @@ Some text.
 def build(tmp_path: Path, conf: str = "") -> Path:
     """Build a project with warnings as errors and return the output folder."""
     src = tmp_path / "src"
-    src.mkdir()
+    src.mkdir(exist_ok=True)
     (src / "conf.py").write_text(
         'project = "My project"\n'
         'html_theme = "ccpbiosim_sphinx_theme"\n'
@@ -92,6 +92,27 @@ def test_copy_buttons_are_configured(tmp_path: Path):
     # the defaults and the project's own settings both reach it.
     assert "const COPYBUTTON_SELECTOR = 'div.highlight pre';" in js
     assert "formatCopyText(text, '$ ', false, true, true, true, '', '')" in js
+
+
+def test_tab_title_and_icon(tmp_path: Path):
+    out = build(tmp_path)
+    index = (out / "index.html").read_text()
+    usage = (out / "usage.html").read_text()
+
+    assert "<title>My project</title>" in index
+    assert "<title>Usage | My project</title>" in usage
+    assert 'href="_static/ccpbiosim-favicon.svg"' in usage
+    assert (out / "_static" / "ccpbiosim-favicon.svg").is_file()
+
+
+def test_project_favicon_replaces_default(tmp_path: Path):
+    (tmp_path / "src").mkdir()
+    (tmp_path / "src" / "icon.png").write_bytes(b"")
+    out = build(tmp_path, 'html_favicon = "icon.png"\n')
+    html = (out / "usage.html").read_text()
+
+    assert 'href="_static/icon.png"' in html
+    assert "ccpbiosim-favicon.svg" not in html
 
 
 def test_project_settings_override_defaults(tmp_path: Path):
