@@ -1,6 +1,15 @@
 [theme]
 inherit = "pydata_sphinx_theme"
 stylesheets = ["styles/pydata-sphinx-theme.css", "ccpbiosim.css"]
+# "On this page" and the edit links go in the left sidebar, under the section
+# navigation, rather than in a sidebar on the right.
+sidebars = [
+    "sidebar-collapse",
+    "sidebar-nav-bs",
+    "page-toc",
+    "edit-this-page",
+    "sourcelink",
+]
 
 [options]
 ccpbiosim_hub_url = "https://ccpbiosim.readthedocs.io/"

@@ -94,11 +94,18 @@ html[data-theme="dark"] {
   border-left: 2px solid rgba(255, 255, 255, 0.5);
 }
 
-/* Hide the left sidebar on desktop when a page has no section links, so pages
- * without sub-pages use the full width. The mobile menu is unaffected. */
+/* Left sidebar: hide the "Section Navigation" block on pages without
+ * sub-pages, so only "On this page" shows. */
+
+.sidebar-primary-item:has(> .bd-docs-nav .bd-toc-item:empty) {
+  display: none;
+}
+
+/* Pages with a banner, such as the home page, use the full width on desktop.
+ * The mobile menu is unaffected. */
 
 @media (min-width: 960px) {
-  .bd-sidebar-primary:has(.bd-docs-nav .bd-toc-item:empty) {
+  .bd-container:has(.ccp-hero) .bd-sidebar-primary {
     display: none;
   }
 }

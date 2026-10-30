@@ -78,6 +78,7 @@ def _set_defaults(app: Sphinx) -> None:
         "show_toc_level": 2,
         "show_prev_next": True,
         "use_edit_page_button": bool(repo),
+        "secondary_sidebar_items": [],
         "footer_start": ["copyright"],
         "footer_end": ["ccpbiosim-footer"],
     }.items():

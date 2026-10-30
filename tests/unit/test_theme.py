@@ -27,6 +27,11 @@ Usage
 =====
 
 Some text.
+
+Options
+-------
+
+More text.
 """
 
 
@@ -73,15 +78,26 @@ def test_banner(tmp_path: Path):
     assert 'href="usage.html"' in html
 
 
-def test_empty_sidebar_is_hidden(tmp_path: Path):
+def test_on_this_page_is_in_the_left_sidebar(tmp_path: Path):
+    html = (build(tmp_path) / "usage.html").read_text()
+    # Everything between the left sidebar and the main content.
+    left = html.split('class="bd-sidebar-primary')[1].split('class="bd-main"')[0]
+
+    assert "page-toc tocsection onthispage" in left
+    assert "tocsection editthispage" in left
+    assert "bd-sidebar-secondary" not in html
+
+
+def test_empty_section_navigation_is_hidden(tmp_path: Path):
     out = build(tmp_path)
     html = (out / "usage.html").read_text()
     css = (out / "_static" / "ccpbiosim.css").read_text()
 
-    # The CSS hides the sidebar using this empty element, so check
+    # The CSS hides "Section Navigation" using this empty element, so check
     # pydata-sphinx-theme still renders it on a page without sub-pages.
     assert '<div class="bd-toc-item navbar-nav"></div>' in html
     assert ".bd-toc-item:empty" in css
+    assert ".bd-container:has(.ccp-hero) .bd-sidebar-primary" in css
 
 
 def test_copy_buttons_are_configured(tmp_path: Path):
