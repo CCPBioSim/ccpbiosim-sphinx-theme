@@ -12,7 +12,7 @@ ccpbiosim-sphinx-theme
 
 This is the Sphinx theme used across CCPBioSim projects. It is built on
 `pydata-sphinx-theme <https://pydata-sphinx-theme.readthedocs.io/>`_ and
-uses the same colours and fonts as `ccpbiosim.org <https://www.ccpbiosim.org/>`_.
+uses the same colours as `ccpbiosim.org <https://www.ccpbiosim.org/>`_.
 
 .. grid:: 1 2 2 3
    :gutter: 3

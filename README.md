@@ -8,7 +8,7 @@ ccpbiosim-sphinx-theme
 | **PyPI**       | [![PyPI - Version](https://img.shields.io/pypi/v/ccpbiosim-sphinx-theme.svg)](https://pypi.org/project/ccpbiosim-sphinx-theme/) [![PyPI - Python Version](https://img.shields.io/pypi/pyversions/ccpbiosim-sphinx-theme.svg)](https://pypi.org/project/ccpbiosim-sphinx-theme/) |
 | **Quality**    | [![Coverage Status](https://coveralls.io/repos/github/CCPBioSim/ccpbiosim-sphinx-theme/badge.svg?branch=main)](https://coveralls.io/github/CCPBioSim/ccpbiosim-sphinx-theme?branch=main) |
 
-The Sphinx theme used across CCPBioSim projects. It is built on [pydata-sphinx-theme](https://pydata-sphinx-theme.readthedocs.io/) and uses the same colours and fonts as [ccpbiosim.org](https://www.ccpbiosim.org/).
+The Sphinx theme used across CCPBioSim projects. It is built on [pydata-sphinx-theme](https://pydata-sphinx-theme.readthedocs.io/) and uses the same colours as [ccpbiosim.org](https://www.ccpbiosim.org/).
 
 An example site using the theme is available at [ccpbiosim-sphinx-theme.readthedocs.io](https://ccpbiosim-sphinx-theme.readthedocs.io/).
 
