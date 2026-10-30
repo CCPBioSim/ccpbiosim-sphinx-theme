@@ -17,7 +17,7 @@ from sphinx.application import Sphinx
 
 from .hero import HeroDirective
 
-__version__ = "0.0.1"
+__version__ = "1.0.0"
 
 THEME_NAME = "ccpbiosim_sphinx_theme"
 THEME_PATH = Path(__file__).parent / "theme" / THEME_NAME
