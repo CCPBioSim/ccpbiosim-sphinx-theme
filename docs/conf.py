@@ -64,5 +64,3 @@ exclude_patterns = ["_build", "Thumbs.db", ".DS_Store"]
 html_theme = "ccpbiosim_sphinx_theme"
 html_static_path = ["_static"]
 html_context = {"github_repo": "ccpbiosim-sphinx-theme", "doc_path": "docs"}
-
-html_sidebars = {"**": []}
