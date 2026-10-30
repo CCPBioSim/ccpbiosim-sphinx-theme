@@ -35,7 +35,7 @@ More text.
 """
 
 
-def build(tmp_path: Path, conf: str = "") -> Path:
+def build(tmp_path: Path, conf: str = "", index: str = INDEX) -> Path:
     """Build a project with warnings as errors and return the output folder."""
     src = tmp_path / "src"
     src.mkdir(exist_ok=True)
@@ -44,7 +44,7 @@ def build(tmp_path: Path, conf: str = "") -> Path:
         'html_theme = "ccpbiosim_sphinx_theme"\n'
         'html_context = {"github_repo": "my-project"}\n' + textwrap.dedent(conf)
     )
-    (src / "index.rst").write_text(INDEX)
+    (src / "index.rst").write_text(index)
     (src / "usage.rst").write_text(USAGE)
     (src / "logo.svg").write_text('<svg xmlns="http://www.w3.org/2000/svg"/>')
 
@@ -76,6 +76,27 @@ def test_banner(tmp_path: Path):
     assert "A one-line description of the project" in html
     assert "A short summary of what the project does." in html
     assert 'href="usage.html"' in html
+
+
+def test_banner_with_light_and_dark_logos(tmp_path: Path):
+    index = INDEX.replace(
+        "   :logo: logo.svg\n",
+        "   :logo-light: logo.svg\n   :logo-dark: logo-dark.svg\n",
+    )
+    (tmp_path / "src").mkdir()
+    (tmp_path / "src" / "logo-dark.svg").write_text(
+        '<svg xmlns="http://www.w3.org/2000/svg"/>'
+    )
+    html = (build(tmp_path, index=index) / "index.html").read_text()
+    start = html.index('class="ccp-hero')
+    hero = html[start : html.index('class="toctree-wrapper', start)]
+
+    # Without the navy panel, each mode shows its own logo.
+    assert hero.startswith('class="ccp-hero ccp-hero-plain')
+    assert 'class="only-light" src="_images/logo.svg"' in hero
+    assert 'class="only-dark" src="_images/logo-dark.svg"' in hero
+    assert "sd-btn-outline-primary" in hero
+    assert "sd-btn-outline-light" not in hero
 
 
 def test_on_this_page_is_in_the_left_sidebar(tmp_path: Path):

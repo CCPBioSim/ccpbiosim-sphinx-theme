@@ -11,6 +11,10 @@ class HeroDirective(SphinxDirective):
     Every option is optional, and the directive content becomes the summary.
     The page title is hidden on pages with a hero, because the hero replaces it.
 
+    With ``:logo:``, the banner is a dark navy panel, so use a logo with white
+    text. With ``:logo-light:`` and ``:logo-dark:`` instead, the banner has no
+    panel and shows the logo for the current light or dark mode.
+
     Example::
 
         .. ccpbiosim-hero::
@@ -25,6 +29,8 @@ class HeroDirective(SphinxDirective):
     has_content = True
     option_spec = {
         "logo": directives.unchanged,
+        "logo-light": directives.unchanged,
+        "logo-dark": directives.unchanged,
         "logo-alt": directives.unchanged,
         "tagline": directives.unchanged,
         "button": directives.unchanged,
@@ -32,10 +38,22 @@ class HeroDirective(SphinxDirective):
     }
 
     def run(self) -> list[nodes.Node]:
-        lines = [".. container:: ccp-hero", ""]
+        alt = self.options.get("logo-alt", f"{self.config.project} logo")
+        light = self.options.get("logo-light")
+        dark = self.options.get("logo-dark")
+        plain = bool(light and dark)
 
-        if logo := self.options.get("logo"):
-            alt = self.options.get("logo-alt", f"{self.config.project} logo")
+        lines = [".. container:: ccp-hero" + (" ccp-hero-plain" if plain else ""), ""]
+
+        if plain:
+            for logo, mode in [(light, "only-light"), (dark, "only-dark")]:
+                lines += [
+                    f"   .. image:: {logo}",
+                    f"      :alt: {alt}",
+                    f"      :class: {mode}",
+                    "",
+                ]
+        elif logo := self.options.get("logo"):
             lines += [
                 f"   .. image:: {logo}",
                 f"      :alt: {alt}",
@@ -65,7 +83,7 @@ class HeroDirective(SphinxDirective):
         if github := self.options.get("github"):
             buttons += [
                 f"      .. button-link:: https://github.com/{github}",
-                "         :color: light",
+                f"         :color: {'primary' if plain else 'light'}",
                 "         :outline:",
                 "",
                 "         :fab:`github` View on GitHub",

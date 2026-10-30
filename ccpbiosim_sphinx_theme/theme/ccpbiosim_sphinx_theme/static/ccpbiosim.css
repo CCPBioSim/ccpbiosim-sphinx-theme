@@ -195,6 +195,19 @@ html[data-theme="dark"] {
   background-color: #fff !important;
 }
 
+/* A banner with light and dark logos has no navy panel, so it uses the page
+ * colours and shows the logo for the current mode. */
+
+.ccp-hero.ccp-hero-plain {
+  color: var(--pst-color-text-base);
+  background: none;
+  padding-top: 1rem;
+}
+
+.ccp-hero.ccp-hero-plain p {
+  color: var(--pst-color-text-base);
+}
+
 /* A page with a hero shows its title in the hero instead. */
 .bd-article section:has(> .ccp-hero) > h1 {
   display: none;

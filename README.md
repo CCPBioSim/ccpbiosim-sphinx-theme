@@ -37,11 +37,14 @@ To add a banner to the home page, put this under the page title:
 
 ```rst
 .. ccpbiosim-hero::
-   :logo: _static/logo.svg
+   :logo-light: _static/logo-black-text.svg
+   :logo-dark: _static/logo-white-text.svg
    :tagline: A short description of the project
    :button: installation | Get started
    :github: CCPBioSim/my-project
 ```
+
+The logo changes with light and dark mode. To use a single logo on a dark navy banner instead, use `:logo:` with a logo that has white text.
 
 ## Development
 

@@ -4,7 +4,8 @@ ccpbiosim-sphinx-theme
 ======================
 
 .. ccpbiosim-hero::
-   :logo: _static/CCPBioSim-logo-white-bottom-text.svg
+   :logo-light: _static/CCPBioSim-logo-black-bottom-text.svg
+   :logo-dark: _static/CCPBioSim-logo-white-bottom-text.svg
    :logo-alt: CCPBioSim logo
    :tagline: Sphinx theme for CCPBioSim documentation
    :button: example | Example page
@@ -57,7 +58,8 @@ The banner at the top of this page is added with:
 .. code-block:: rst
 
    .. ccpbiosim-hero::
-      :logo: _static/logo.svg
+      :logo-light: _static/logo-black-text.svg
+      :logo-dark: _static/logo-white-text.svg
       :tagline: A short description of the project
       :button: installation | Get started
       :github: CCPBioSim/my-project
