@@ -97,6 +97,15 @@ html[data-theme="dark"] {
   border-left: 2px solid rgba(255, 255, 255, 0.5);
 }
 
+/* Hide the left sidebar on desktop when a page has no section links, so pages
+ * without sub-pages use the full width. The mobile menu is unaffected. */
+
+@media (min-width: 960px) {
+  .bd-sidebar-primary:has(.bd-docs-nav .bd-toc-item:empty) {
+    display: none;
+  }
+}
+
 /* Headings */
 
 .bd-article h1 {

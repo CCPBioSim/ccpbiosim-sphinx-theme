@@ -73,6 +73,17 @@ def test_banner(tmp_path: Path):
     assert 'href="usage.html"' in html
 
 
+def test_empty_sidebar_is_hidden(tmp_path: Path):
+    out = build(tmp_path)
+    html = (out / "usage.html").read_text()
+    css = (out / "_static" / "ccpbiosim.css").read_text()
+
+    # The CSS hides the sidebar using this empty element, so check
+    # pydata-sphinx-theme still renders it on a page without sub-pages.
+    assert '<div class="bd-toc-item navbar-nav"></div>' in html
+    assert ".bd-toc-item:empty" in css
+
+
 def test_project_settings_override_defaults(tmp_path: Path):
     out = build(
         tmp_path,
