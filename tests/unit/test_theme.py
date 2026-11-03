@@ -109,6 +109,35 @@ def test_on_this_page_is_in_the_left_sidebar(tmp_path: Path):
     assert "bd-sidebar-secondary" not in html
 
 
+def test_banner_in_a_markdown_page(tmp_path: Path):
+    src = tmp_path / "src"
+    src.mkdir()
+    (src / "conf.py").write_text(
+        'project = "My project"\n'
+        'html_theme = "ccpbiosim_sphinx_theme"\n'
+        'extensions = ["myst_parser"]\n'
+    )
+    (src / "index.md").write_text(
+        "# My project\n\n"
+        "```{ccpbiosim-hero}\n"
+        ":logo: logo.svg\n"
+        ":tagline: A one-line description of the project\n"
+        ":github: CCPBioSim/my-project\n\n"
+        "A short summary of what the project does.\n"
+        "```\n"
+    )
+    (src / "logo.svg").write_text('<svg xmlns="http://www.w3.org/2000/svg"/>')
+    out = tmp_path / "html"
+    assert build_main(["-W", "-q", "-b", "html", str(src), str(out)]) == 0
+    html = (out / "index.html").read_text()
+
+    # The banner must be built, not shown as reStructuredText source.
+    assert 'class="ccp-hero' in html
+    assert 'src="_images/logo.svg"' in html
+    assert "A one-line description of the project" in html
+    assert ".. container::" not in html
+
+
 def test_empty_section_navigation_is_hidden(tmp_path: Path):
     out = build(tmp_path)
     html = (out / "usage.html").read_text()

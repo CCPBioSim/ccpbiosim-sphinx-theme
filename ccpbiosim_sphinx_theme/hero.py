@@ -92,4 +92,10 @@ class HeroDirective(SphinxDirective):
         if buttons:
             lines += ["   .. container:: ccp-hero-buttons", ""] + buttons
 
-        return self.parse_text_to_nodes("\n".join(lines), offset=self.content_offset)
+        text = "\n".join(lines)
+        # In a Markdown (MyST) page the text would be parsed as Markdown, so
+        # wrap it in MyST's eval-rst block to parse it as reStructuredText.
+        if type(self.state).__module__.startswith("myst_parser"):
+            text = f"```{{eval-rst}}\n{text}\n```"
+
+        return self.parse_text_to_nodes(text, offset=self.content_offset)
