@@ -68,6 +68,22 @@ html[data-theme="dark"] {
   border-bottom-color: #fff;
 }
 
+/* The "More" menu holds header links that do not fit. Its button matches the
+ * other header links, and the links inside it use the normal page colours, as
+ * the menu itself is not teal. */
+
+.bd-header .navbar-nav .dropdown-toggle {
+  color: #fff !important;
+}
+
+.bd-header .dropdown-menu .nav-link {
+  color: var(--pst-color-text-base) !important;
+}
+
+.bd-header .dropdown-menu .nav-link:hover {
+  color: var(--pst-color-primary) !important;
+}
+
 .bd-header .search-button-field {
   color: #fff;
   background-color: rgba(255, 255, 255, 0.12);

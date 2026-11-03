@@ -157,6 +157,33 @@ def test_empty_section_navigation_is_hidden(tmp_path: Path):
     assert ".bd-container:has(.ccp-hero) .bd-sidebar-primary" in css
 
 
+def test_more_menu_is_readable(tmp_path: Path):
+    src = tmp_path / "src"
+    src.mkdir()
+    (src / "conf.py").write_text(
+        'project = "My project"\nhtml_theme = "ccpbiosim_sphinx_theme"\n',
+        encoding="utf-8",
+    )
+    pages = [f"page{i}" for i in range(7)]
+    (src / "index.rst").write_text(
+        "My project\n==========\n\n.. toctree::\n\n"
+        + "".join(f"   {p}\n" for p in pages),
+        encoding="utf-8",
+    )
+    for p in pages:
+        (src / f"{p}.rst").write_text(f"{p}\n{'=' * len(p)}\n", encoding="utf-8")
+    out = tmp_path / "html"
+    assert build_main(["-W", "-q", "-b", "html", str(src), str(out)]) == 0
+    html = (out / "index.html").read_text(encoding="utf-8")
+    css = (out / "_static" / "ccpbiosim.css").read_text(encoding="utf-8")
+
+    # More than six header links puts the rest in a "More" menu, whose links
+    # sit on a white menu rather than the teal header.
+    assert "dropdown-toggle" in html
+    assert ".bd-header .navbar-nav .dropdown-toggle" in css
+    assert ".bd-header .dropdown-menu .nav-link" in css
+
+
 def test_copy_buttons_are_configured(tmp_path: Path):
     out = build(tmp_path, 'copybutton_prompt_text = "$ "\n')
     js = (out / "_static" / "copybutton.js").read_text(encoding="utf-8")
