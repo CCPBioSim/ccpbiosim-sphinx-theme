@@ -42,11 +42,14 @@ def build(tmp_path: Path, conf: str = "", index: str = INDEX) -> Path:
     (src / "conf.py").write_text(
         'project = "My project"\n'
         'html_theme = "ccpbiosim_sphinx_theme"\n'
-        'html_context = {"github_repo": "my-project"}\n' + textwrap.dedent(conf)
+        'html_context = {"github_repo": "my-project"}\n' + textwrap.dedent(conf),
+        encoding="utf-8",
     )
-    (src / "index.rst").write_text(index)
-    (src / "usage.rst").write_text(USAGE)
-    (src / "logo.svg").write_text('<svg xmlns="http://www.w3.org/2000/svg"/>')
+    (src / "index.rst").write_text(index, encoding="utf-8")
+    (src / "usage.rst").write_text(USAGE, encoding="utf-8")
+    (src / "logo.svg").write_text(
+        '<svg xmlns="http://www.w3.org/2000/svg"/>', encoding="utf-8"
+    )
 
     out = tmp_path / "html"
     assert build_main(["-W", "-q", "-b", "html", str(src), str(out)]) == 0
@@ -55,7 +58,7 @@ def build(tmp_path: Path, conf: str = "", index: str = INDEX) -> Path:
 
 def test_default_build(tmp_path: Path):
     out = build(tmp_path)
-    html = (out / "usage.html").read_text()
+    html = (out / "usage.html").read_text(encoding="utf-8")
 
     assert "_static/ccpbiosim.css" in html
     assert 'src="_static/ccpbiosim-logo-white-side-text.svg"' in html
@@ -69,7 +72,7 @@ def test_default_build(tmp_path: Path):
 
 
 def test_banner(tmp_path: Path):
-    html = (build(tmp_path) / "index.html").read_text()
+    html = (build(tmp_path) / "index.html").read_text(encoding="utf-8")
 
     assert 'class="ccp-hero' in html
     assert 'src="_images/logo.svg"' in html
@@ -85,9 +88,9 @@ def test_banner_with_light_and_dark_logos(tmp_path: Path):
     )
     (tmp_path / "src").mkdir()
     (tmp_path / "src" / "logo-dark.svg").write_text(
-        '<svg xmlns="http://www.w3.org/2000/svg"/>'
+        '<svg xmlns="http://www.w3.org/2000/svg"/>', encoding="utf-8"
     )
-    html = (build(tmp_path, index=index) / "index.html").read_text()
+    html = (build(tmp_path, index=index) / "index.html").read_text(encoding="utf-8")
     start = html.index('class="ccp-hero')
     hero = html[start : html.index('class="toctree-wrapper', start)]
 
@@ -100,7 +103,7 @@ def test_banner_with_light_and_dark_logos(tmp_path: Path):
 
 
 def test_on_this_page_is_in_the_left_sidebar(tmp_path: Path):
-    html = (build(tmp_path) / "usage.html").read_text()
+    html = (build(tmp_path) / "usage.html").read_text(encoding="utf-8")
     # Everything between the left sidebar and the main content.
     left = html.split('class="bd-sidebar-primary')[1].split('class="bd-main"')[0]
 
@@ -115,7 +118,8 @@ def test_banner_in_a_markdown_page(tmp_path: Path):
     (src / "conf.py").write_text(
         'project = "My project"\n'
         'html_theme = "ccpbiosim_sphinx_theme"\n'
-        'extensions = ["myst_parser"]\n'
+        'extensions = ["myst_parser"]\n',
+        encoding="utf-8",
     )
     (src / "index.md").write_text(
         "# My project\n\n"
@@ -124,12 +128,15 @@ def test_banner_in_a_markdown_page(tmp_path: Path):
         ":tagline: A one-line description of the project\n"
         ":github: CCPBioSim/my-project\n\n"
         "A short summary of what the project does.\n"
-        "```\n"
+        "```\n",
+        encoding="utf-8",
     )
-    (src / "logo.svg").write_text('<svg xmlns="http://www.w3.org/2000/svg"/>')
+    (src / "logo.svg").write_text(
+        '<svg xmlns="http://www.w3.org/2000/svg"/>', encoding="utf-8"
+    )
     out = tmp_path / "html"
     assert build_main(["-W", "-q", "-b", "html", str(src), str(out)]) == 0
-    html = (out / "index.html").read_text()
+    html = (out / "index.html").read_text(encoding="utf-8")
 
     # The banner must be built, not shown as reStructuredText source.
     assert 'class="ccp-hero' in html
@@ -140,8 +147,8 @@ def test_banner_in_a_markdown_page(tmp_path: Path):
 
 def test_empty_section_navigation_is_hidden(tmp_path: Path):
     out = build(tmp_path)
-    html = (out / "usage.html").read_text()
-    css = (out / "_static" / "ccpbiosim.css").read_text()
+    html = (out / "usage.html").read_text(encoding="utf-8")
+    css = (out / "_static" / "ccpbiosim.css").read_text(encoding="utf-8")
 
     # The CSS hides "Section Navigation" using this empty element, so check
     # pydata-sphinx-theme still renders it on a page without sub-pages.
@@ -162,9 +169,9 @@ def test_copy_buttons_are_configured(tmp_path: Path):
 
 def test_tab_title_and_icon(tmp_path: Path):
     out = build(tmp_path)
-    index = (out / "index.html").read_text()
-    usage = (out / "usage.html").read_text()
-    search = (out / "search.html").read_text()
+    index = (out / "index.html").read_text(encoding="utf-8")
+    usage = (out / "usage.html").read_text(encoding="utf-8")
+    search = (out / "search.html").read_text(encoding="utf-8")
 
     assert "<title>My project Documentation</title>" in index
     assert "<title>Usage | My project Documentation</title>" in usage
@@ -175,7 +182,7 @@ def test_tab_title_and_icon(tmp_path: Path):
 
 def test_project_html_title_is_used_in_tab_titles(tmp_path: Path):
     out = build(tmp_path, 'html_title = "My project docs"\n')
-    usage = (out / "usage.html").read_text()
+    usage = (out / "usage.html").read_text(encoding="utf-8")
 
     assert "<title>Usage | My project docs</title>" in usage
 
@@ -184,8 +191,8 @@ def test_only_the_home_page_drops_its_page_title(tmp_path: Path):
     # A page titled the same as the project, such as an API reference named
     # after the package, should still show its page title.
     out = build(tmp_path, 'project = "Usage"\n')
-    index = (out / "index.html").read_text()
-    usage = (out / "usage.html").read_text()
+    index = (out / "index.html").read_text(encoding="utf-8")
+    usage = (out / "usage.html").read_text(encoding="utf-8")
 
     assert "<title>Usage Documentation</title>" in index
     assert "<title>Usage | Usage Documentation</title>" in usage
@@ -195,7 +202,7 @@ def test_project_favicon_replaces_default(tmp_path: Path):
     (tmp_path / "src").mkdir()
     (tmp_path / "src" / "icon.png").write_bytes(b"")
     out = build(tmp_path, 'html_favicon = "icon.png"\n')
-    html = (out / "usage.html").read_text()
+    html = (out / "usage.html").read_text(encoding="utf-8")
 
     assert 'href="_static/icon.png"' in html
     assert "ccpbiosim-favicon.svg" not in html
@@ -216,7 +223,7 @@ def test_project_settings_override_defaults(tmp_path: Path):
         }
         """,
     )
-    html = (out / "usage.html").read_text()
+    html = (out / "usage.html").read_text(encoding="utf-8")
     header = html.split('class="navbar-icon-links')[1].split("</ul>")[0]
 
     assert "Custom name" in html
