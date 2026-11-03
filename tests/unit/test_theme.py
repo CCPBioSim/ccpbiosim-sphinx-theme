@@ -123,7 +123,7 @@ def test_empty_section_navigation_is_hidden(tmp_path: Path):
 
 def test_copy_buttons_are_configured(tmp_path: Path):
     out = build(tmp_path, 'copybutton_prompt_text = "$ "\n')
-    js = (out / "_static" / "copybutton.js").read_text()
+    js = (out / "_static" / "copybutton.js").read_text(encoding="utf-8")
 
     # sphinx-copybutton fills in this template from its settings, so check
     # the defaults and the project's own settings both reach it.
