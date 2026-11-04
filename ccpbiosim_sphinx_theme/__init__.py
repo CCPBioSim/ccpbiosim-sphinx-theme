@@ -19,7 +19,7 @@ from sphinx_copybutton import add_to_context as add_copybutton_settings
 
 from .hero import HeroDirective
 
-__version__ = "1.3.3"
+__version__ = "1.3.4"
 
 THEME_NAME = "ccpbiosim_sphinx_theme"
 THEME_PATH = Path(__file__).parent / "theme" / THEME_NAME
