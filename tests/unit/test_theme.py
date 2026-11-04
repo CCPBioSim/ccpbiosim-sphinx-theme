@@ -184,6 +184,29 @@ def test_more_menu_is_readable(tmp_path: Path):
     assert ".bd-header .dropdown-menu .nav-link" in css
 
 
+def test_no_edit_button_on_generated_api_pages(tmp_path: Path):
+    (tmp_path / "pkg").mkdir()
+    (tmp_path / "pkg" / "__init__.py").write_text(
+        '"""A package."""\n\n\ndef hello():\n    """Say hello."""\n',
+        encoding="utf-8",
+    )
+    out = build(
+        tmp_path,
+        """\
+        extensions = ["autoapi.extension"]
+        autoapi_dirs = ["../pkg"]
+        autoapi_root = "reference"
+        """,
+    )
+    api = (out / "reference" / "pkg" / "index.html").read_text(encoding="utf-8")
+    usage = (out / "usage.html").read_text(encoding="utf-8")
+
+    # The API pages are generated during the build and are not in the
+    # repository, so there is no source file on GitHub to edit.
+    assert "editthispage" not in api
+    assert "editthispage" in usage
+
+
 def test_copy_buttons_are_configured(tmp_path: Path):
     out = build(tmp_path, 'copybutton_prompt_text = "$ "\n')
     js = (out / "_static" / "copybutton.js").read_text(encoding="utf-8")
