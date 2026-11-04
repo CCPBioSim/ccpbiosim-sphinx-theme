@@ -56,7 +56,6 @@ ccpbiosim_sphinx_theme = "ccpbiosim_sphinx_theme"
 testing = [
     "pytest>=9.0,<10.0",
     "pytest-cov>=7.0,<8.0",
-    "pytest-sugar>=1.1,<2.0",
     "myst-parser>=4.0,<6.0",
     "sphinx-autoapi>=3.8,<4.0",
 ]
